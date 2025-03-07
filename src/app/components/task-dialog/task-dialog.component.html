@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>{{ data.id ? 'Editar Tarea' : 'Agregar Tarea' }}</h2>
+<mat-dialog-content>
+  <form>
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Título</mat-label>
+      <input matInput placeholder="Título de la tarea" [(ngModel)]="data.title" name="title">
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput placeholder="Descripción" [(ngModel)]="data.description" name="description"></textarea>
+    </mat-form-field>
+    <!-- Campo para seleccionar el estado -->
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Estado</mat-label>
+      <mat-select [(ngModel)]="data.stateId" name="stateId">
+        <mat-option *ngFor="let state of states" [value]="state.id">
+          {{ state.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onSave()">Guardar</button>
+</mat-dialog-actions>
